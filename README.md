@@ -1,1 +1,5 @@
-# ecommerce api using expressjs
+# ECOMMERCE API
+## Technology
+* Typescript
+* Expressjs
+* Mongoose
