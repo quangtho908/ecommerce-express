@@ -62,7 +62,10 @@ src/
    ### Note Database is create in Mongo Atlas if you use local database you can:
     - Go to `config` foler in `src` and go to `mongoose_config.ts` and chage `mongodb+srv://${USERDB}:${PASSDB}@cluster0.c0pmn.mongodb.net/${DBNAME}?retryWrites=true&w=majority` to your url database
 5. Run app follow 2 steps:
-    `yarn tsc`
-    `yarn start`
+   - `yarn tsc`
+   - `yarn start`
+6. Structure Database mongodb include 4 collections equivalent 4 files in `src/models`
+
+## This Api is not completed yet, there are many more things to update
 
      
