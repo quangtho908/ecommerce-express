@@ -41,9 +41,9 @@ src/
   └── server.ts
 ```
 ## Config
-**Step 1**: You open terminal( linux ) or cmd( window ) and clone this repository by using `git clone`
+### Step 1: You open terminal( linux ) or cmd( window ) and clone this repository by using `git clone`
 `git clonehttps://github.com/quangtho908/ecommerce-express.git`
-**Step 2**: pointer to folder you clone and
+### Step 2: pointer to folder you clone and
 1. Install package
 `yarn install`
 2. Install typescript global if it don't exist in your computer
