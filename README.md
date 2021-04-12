@@ -45,10 +45,23 @@ src/
 `git clonehttps://github.com/quangtho908/ecommerce-express.git`
 ### Step 2: pointer to folder you clone and
 1. Install package
-`yarn install`
-2. Install typescript global if it don't exist in your computer
+  - `yarn install`
+2. Install typescript global if it don't exist in your compute
+  - `npm install -g typescript`
+  - or
+  - `sudo npm install -g typescript` ( if using linux )
 3. Config file `.env`
-4. Run app follow 2 steps:
+   ```
+   USERDB=userdb
+   PASSDB=passdb
+   DBNAME=namedb
+   ```
+   - `USERDB` is username of database
+   - `PASSDB` is password 
+   - `DBNAME` is name of Database
+   ### Note Database is create in Mongo Atlas if you use local database you can:
+    - Go to `config` foler in `src` and go to `mongoose_config.ts` and chage `mongodb+srv://${USERDB}:${PASSDB}@cluster0.c0pmn.mongodb.net/${DBNAME}?retryWrites=true&w=majority` to your url database
+5. Run app follow 2 steps:
     `yarn tsc`
     `yarn start`
 
