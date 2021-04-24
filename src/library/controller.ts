@@ -1,5 +1,4 @@
 import {Router} from "express";
-import mongoose from "../config/mongoose_config";
 import upload from "../config/multer_config";
 import * as service from "./service";
 

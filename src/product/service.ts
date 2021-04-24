@@ -1,11 +1,8 @@
 import ProductModel from "../models/product_model";
 import mongoose from "../config/mongoose_config";
-import {Product} from "./dto/product_dto";
-import CreateProductDto from "./dto/createProduct_dto";
-import updateProductDto from "./dto/updateProduct_dto";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
-export async function getProduct(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function getProduct(req: Request, res: Response): Promise<void> {
     try{
         const data = await ProductModel.find({}).populate("category").limit(20);
         res.status(200).json({data});
@@ -14,7 +11,7 @@ export async function getProduct(req: Request, res: Response, next: NextFunction
     }
 }
 
-export async function getProductById(req: Request, res: Response, next: NextFunction): Promise<void>{
+export async function getProductById(req: Request, res: Response): Promise<void>{
     try{
         const data = await ProductModel.findOne({id: req.params.id})
         .populate({path: "images", select: "path"})
@@ -36,7 +33,7 @@ export async function getProductByCategory(req: Request, res: Response): Promise
         res.status(500).json({message: "Server has problem, please try again"})
     }
 }
-export async function getPagination(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function getPagination(req: Request, res: Response): Promise<void> {
     try{
         const index = parseInt(req.params.page);
         const start: number = (index - 1) * 20;
@@ -49,7 +46,7 @@ export async function getPagination(req: Request, res: Response, next: NextFunct
     }
 }
 
-export async function createProduct(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function createProduct(req: Request, res: Response): Promise<void> {
     try{
         await ProductModel.create(req.body);
         res.status(201).json({message: "Product is created"});
@@ -58,7 +55,7 @@ export async function createProduct(req: Request, res: Response, next: NextFunct
     }
 }
 
-export async function updateProduct(req: Request, res: Response, next: NextFunction) {
+export async function updateProduct(req: Request, res: Response) {
     try{
         const {field, data, id} = req.body;
         const newData = field === "category" ? mongoose.Types.ObjectId(data): data;
@@ -69,7 +66,7 @@ export async function updateProduct(req: Request, res: Response, next: NextFunct
     }
 }
 
-export async function deleteProduct(req: Request, res: Response, next: NextFunction) {
+export async function deleteProduct(req: Request, res: Response) {
     try{
         await ProductModel.deleteOne({id: req.body.id})
         res.status(200).json({message: "Product is removed"});

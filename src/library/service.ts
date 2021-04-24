@@ -1,4 +1,3 @@
-import mongoose from "../config/mongoose_config";
 import ImageModel from "../models/image_model";
 import fs from "fs";
 import {Request, Response} from "express";

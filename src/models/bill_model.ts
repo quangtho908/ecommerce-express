@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { inforOrder } from "../order/dto/order_dto";
 
 const schema = new mongoose.Schema({
     id: String,
