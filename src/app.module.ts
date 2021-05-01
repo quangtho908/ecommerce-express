@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CategoryModule } from './features/category/category.module';
-import { LibraryModule } from './features/library/library.module';
-import { OrderModule } from './features/order/order.module';
-import { ProductModule } from './features/product/product.module';
+import { CategoryModule } from './category/category.module';
+import { LibraryModule } from './library/library.module';
+import { OrderModule } from './order/order.module';
+import { ProductModule } from './product/product.module';
 import {ServeStaticModule} from "@nestjs/serve-static";
 import { join } from 'path';
 @Module({
