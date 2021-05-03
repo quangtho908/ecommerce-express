@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from "@nestjs/common";
+import { CheckAuthGuard } from "../guard/checkAuth.guard";
 import { CreateOrderDto } from "./dto/CreateOrderDto";
 import { Order } from "./order.model";
 import { OrderService } from "./order.service";
@@ -17,16 +18,19 @@ export class OrderController {
         return await this.orderService.findById(id);
     }
 
+    @UseGuards(CheckAuthGuard)
     @Post()
     async create(@Body() createOrderDto: CreateOrderDto): Promise<Order> {
         return await this.orderService.create(createOrderDto);
     }
 
+    @UseGuards(CheckAuthGuard)
     @Put()
     async update(@Body() {id, data}): Promise<Order> {
         return await this.orderService.update(id, data);
     }
-
+    
+    @UseGuards(CheckAuthGuard)
     @Delete()
     async delete(@Body() {id}): Promise<Order> {
         return await this.orderService.delete(id)
