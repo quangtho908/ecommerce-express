@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post, UploadedFiles, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Post, UploadedFiles, UseGuards, UseInterceptors } from "@nestjs/common";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import {diskStorage} from "multer"
+import { CheckAdminAuth } from "../guard/checkAdmin.guard";
 import { File } from "./library.model";
 import { LibraryService } from "./library.service";
 
@@ -8,12 +9,12 @@ import { LibraryService } from "./library.service";
 export class LibraryController {
 
     constructor(private libraryService: LibraryService) {}
-
+    @UseGuards(CheckAdminAuth)
     @Get()
     async findAll(): Promise<File[]> {
         return await this.libraryService.findAll();
     }
-
+    @UseGuards(CheckAdminAuth)
     @Post()
     @UseInterceptors(FilesInterceptor("files", 20, {
         storage: diskStorage({

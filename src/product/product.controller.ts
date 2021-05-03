@@ -1,5 +1,6 @@
-import {Controller, Get, Post, Put, Body, Param, Delete, UsePipes} from "@nestjs/common";
+import {Controller, Get, Post, Put, Body, Param, Delete, UsePipes, UseGuards} from "@nestjs/common";
 import {} from "mongoose"
+import { CheckAdminAuth } from "../guard/checkAdmin.guard";
 import { CreateProductDto } from "./dto/CreateProductDto";
 import { UpdateProductDto } from "./dto/UpdateProductDto";
 import { Product } from "./product.model";
@@ -23,18 +24,18 @@ export class ProductController {
     async findByCategory(@Param("category") category: string): Promise<Product[]> {
         return await this.productService.findByCategory(category);
     }
-
+    @UseGuards(CheckAdminAuth)
     @Post()
     async create(@Body() createProductDto: CreateProductDto): Promise<Product> {
         return await this.productService.create(createProductDto);
     }
-
+    @UseGuards(CheckAdminAuth)
     @Put()
     @UsePipes(new validatorUpdate())
     async update(@Body() updateProductDto: UpdateProductDto): Promise<Product> {
         return await this.productService.update(updateProductDto.id, updateProductDto.data)
     }
-
+    @UseGuards(CheckAdminAuth)
     @Delete()
     async delete(@Body() deteleProductDto: {id: string}): Promise<Product> {
         return await this.productService.delete(deteleProductDto.id);
