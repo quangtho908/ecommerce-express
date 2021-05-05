@@ -5,6 +5,9 @@ export class CreateOrderDto {
     id: string
 
     @IsNotEmpty()
+    userId: string
+
+    @IsNotEmpty()
     owner: string
 
     @IsNotEmpty()
