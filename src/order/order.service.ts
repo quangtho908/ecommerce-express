@@ -33,7 +33,7 @@ export class OrderService {
         return result;
     }
 
-    async delete(id:string): Promise<Order> {
+    async delete(id: string): Promise<Order> {
         const result = await this.orderModel.findByIdAndDelete(id);
         if(!result) throw new NotFoundException();
         this.userModel.updateMany({}, {$pull: {carts: Types.ObjectId(id)}}, {multi: true});
